@@ -13,6 +13,8 @@ RUN addgroup -S foo && adduser -S foo -G foo && \
 RUN apk --no-cache add wget --virtual .build-deps && \
     echo "Target Arch $TARGETARCH" && \
     if test "$TARGETARCH" = 'amd64'; then wget https://install.speedtest.net/app/cli/ookla-speedtest-${SPEEDTEST_VERSION}-linux-x86_64.tgz -O /var/tmp/speedtest.tar.gz; fi && \
+    if test "$TARGETARCH" = 'arm'; then wget https://install.speedtest.net/app/cli/ookla-speedtest-${SPEEDTEST_VERSION}-linux-armel.tgz -O /var/tmp/speedtest.tar.gz; fi && \
+    if test "$TARGETARCH" = 'arm64'; then wget https://install.speedtest.net/app/cli/ookla-speedtest-${SPEEDTEST_VERSION}-linux-armhf.tgz -O /var/tmp/speedtest.tar.gz; fi && \
 
     tar xf /var/tmp/speedtest.tar.gz -C /var/tmp && \
     mv /var/tmp/speedtest /usr/local/bin && \
