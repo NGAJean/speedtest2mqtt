@@ -67,6 +67,6 @@ jobs:
         with:
           platforms: linux/arm/v7,linux/arm64,linux/amd64
           push: true
-          tags: moafrancky/speedtest2mqtt:${{ env.DOCKERTAG }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/speedtest2mqtt:${{ env.DOCKERTAG }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
