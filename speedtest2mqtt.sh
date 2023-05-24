@@ -12,10 +12,8 @@ echo "$(date -Iseconds) starting speedtest"
 
 speedtest --accept-license --accept-gdpr -f json-pretty > ${file}
 
-downraw=$(jq -r '.download.bandwidth' ${file})
-download=$(printf %.2f\\n "$((downraw * 8))e-6")
-upraw=$(jq -r '.upload.bandwidth' ${file})
-upload=$(printf %.2f\\n "$((upraw * 8))e-6")
+download=$(jq -r '.download.bandwidth' ${file})
+upload=$(jq -r '.upload.bandwidth' ${file})
 ping=$(jq -r '.ping.latency' ${file})
 jitter=$(jq -r '.ping.jitter' ${file})
 packetloss=$(jq -r '.packetLoss' ${file})
