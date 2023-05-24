@@ -36,13 +36,13 @@ echo "$(date -Iseconds) jitter = ${jitter} ms"
 echo "$(date -Iseconds) sending results to ${MQTT_HOST} as clientID ${MQTT_ID} with options ${MQTT_OPTIONS} using user ${MQTT_USER}"
 
 /usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/download/value -m "${download}"
-/usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/download/config -m '{"device_class": "data_rate", "name": "Internet Download Speed", "stat_t": "~/value", "unit_of_measurement": "MB/s"}'
+/usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/download/config -m "{\"~\": \"${MQTT_TOPIC}/download\", \"device_class\": \"data_rate\", \"name\": \"Internet Download Speed\", \"stat_t\": \"~/value\", \"unit_of_measurement\": \"MB/s\"}"
 
 /usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/upload/value -m "${upload}"
-/usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/upload/config -m '{"device_class": "data_rate", "name": "Internet Upload Speed", "stat_t": "~/value", "unit_of_measurement": "MB/s"}'
+/usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/upload/config -m "{\"~\": \"${MQTT_TOPIC}/upload\", \"device_class\": \"data_rate\", \"name\": \"Internet Upload Speed\", \"stat_t\": \"~/value\", \"unit_of_measurement\": \"MB/s\"}"
 
 /usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/ping/value -m "${ping}"
-/usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/ping/config -m '{"device_class": "duration", "name": "Internet Ping Latency", "stat_t": "~/value", "unit_of_measurement": "ms"}'
+/usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/ping/config -m "{\"~\": \"${MQTT_TOPIC}/ping\", \"device_class\": \"duration\", \"name\": \"Internet Ping Latency\", \"stat_t\": \"~/value\", \"unit_of_measurement\": \"ms\"}"
 
 /usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/jitter -m "${jitter}"
 /usr/bin/mosquitto_pub -h ${MQTT_HOST} -i ${MQTT_ID} ${MQTT_OPTIONS} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_TOPIC}/packetloss -m "${packetloss}"
